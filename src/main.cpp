@@ -34,7 +34,11 @@ int main() {
     // Main game loop
     while (!WindowShouldClose()) // Detect window close button or ESC key
     {
-
+        int time = 0;
+        time++;
+        if(time == 3600){
+            globalgamestate = gameover;
+        }
         if (IsKeyReleased(KEY_ENTER)){
             globalgamestate = game;
         }
