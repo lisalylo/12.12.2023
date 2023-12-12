@@ -11,7 +11,7 @@
 #include "screen_gameover.h"
 
 
-enum globalgamestate {menu, game, gameover};
+enum states {menu, game, gameover};
 
 enum states globalgamestate = menu;
 
@@ -33,9 +33,11 @@ int main() {
     // Main game loop
     while (!WindowShouldClose()) // Detect window close button or ESC key
     {
-        // Updates that are made by frame are coded here
-        // ...
-        // ...
+        int updates = 0;
+        updates++;
+        if(updates == 60){
+            globalgamestate = gameover;
+        }
         if (IsKeyReleased(KEY_ENTER)){
             globalgamestate = game;
         }
@@ -57,7 +59,7 @@ int main() {
             case menu:
                screen_menu();
                break;
-                break;
+
             case game:
                 screen_game();
                 break;

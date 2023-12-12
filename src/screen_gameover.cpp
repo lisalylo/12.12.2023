@@ -10,10 +10,6 @@
 
 #include "screen_gameover.h"
 
- void game_over(){
-
-     BeginDrawing();
-     DrawText("GameOver, Oh man alter",10,10,30,LIGHTGRAY);
-     EndDrawing();
-
+void gameover(){
+    DrawText("Game Over ... Oh man alter!", 10, 10, 30, PURPLE);
 }
