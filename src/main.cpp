@@ -30,6 +30,7 @@ int main() {
     // ...
     Texture2D myTexture = LoadTexture("assets/graphics/testimage.png");
 
+
     // Main game loop
     while (!WindowShouldClose()) // Detect window close button or ESC key
     {
