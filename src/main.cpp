@@ -11,7 +11,8 @@
 #include "screen_gameover.h"
 
 
-int globalgamestate = 0;
+enum states {menu, game, gameover};
+enum states globalgamestate = menu;
 
 int main() {
     // Raylib initialization
@@ -31,17 +32,21 @@ int main() {
     // Main game loop
     while (!WindowShouldClose()) // Detect window close button or ESC key
     {
-        // Updates that are made by frame are coded here
-        // ...
-        // ...
+      int updates = 0;
+      updates++;
+      if(updates == 60){
+          globalgamestate = gameover;
+          break;
+      }
+
         if (IsKeyReleased(KEY_ONE)){
-            globalgamestate = 0;
+            globalgamestate = menu;
         }
         if (IsKeyReleased(KEY_TWO)){
-            globalgamestate = 1;
+            globalgamestate = game;
         }
         if (IsKeyReleased(KEY_THREE)){
-            globalgamestate = 2;
+            globalgamestate = gameover;
         }
 
         BeginDrawing();
@@ -52,14 +57,13 @@ int main() {
 
 
         switch (globalgamestate) {
-            case 0:
+            case menu:
                screen_menu();
                break;
-                break;
-            case 1:
+            case game:
                 screen_game();
                 break;
-            case 2:
+            case gameover:
                screen_gameover();
                break;
         }
