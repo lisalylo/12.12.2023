@@ -5,5 +5,8 @@
 #include "config.h"
 
 void screen_menu(){
-    DrawText("Das ist der Menu Screen-state", 10, 10, 30, LIGHTGRAY);
+
+    DrawText("Clicker Chaos", 10, 10, 30, PURPLE);
+    DrawText("Press ENTER to start game", 10, 41, 30, PINK);
+
 }
