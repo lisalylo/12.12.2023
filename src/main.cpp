@@ -4,7 +4,12 @@
 
 #include "config.h"
 
-#include "Screen_menu.h"
+#include "screen_menu.h"
+
+#include "screen_game.h"
+
+#include "screen_gameover.h"
+
 
 int globalgamestate = 0;
 
@@ -29,41 +34,45 @@ int main() {
         // Updates that are made by frame are coded here
         // ...
         // ...
-
-        BeginDrawing();
-        // You can draw on the screen between BeginDrawing() and EndDrawing()
-        //die abfrage ist schlecht, weil wenn 0 gedrückt ist, macht es keinen SInn danach noch nach 1 und 2 zu prüfen
-       if (IsKeyReleased(KEY_KP_0)){
-           globalgamestate = 0;
-       }
-        if (IsKeyReleased(KEY_KP_1)){
+        if (IsKeyReleased(KEY_ONE)){
+            globalgamestate = 0;
+        }
+        if (IsKeyReleased(KEY_TWO)){
             globalgamestate = 1;
         }
-        if (IsKeyReleased(KEY_KP_2)){
+        if (IsKeyReleased(KEY_THREE)){
             globalgamestate = 2;
         }
 
-        ClearBackground(WHITE);
+        BeginDrawing();
+            // You can draw on the screen between BeginDrawing() and EndDrawing()
+            // ...
+            // ...
+            ClearBackground(WHITE);
 
-        switch (globalgamestate){
-            case 0 :
-                screen_menu();
-            break;
-            case 1 :
-                DrawText("das ist der game screen state", 10, 10, 30, LIGHTGRAY);
-            break;
-            case 2 :
-                DrawText("das ist der game over screen state", 10, 10, 30, LIGHTGRAY);
-            default:
+
+        switch (globalgamestate) {
+            case 0:
+               screen_menu();
+               break;
                 break;
+            case 1:
+                screen_game();
+                break;
+            case 2:
+               screen_gameover();
+               break;
         }
+            //if(globalgamestate == 0){
+               // DrawText("Das ist der Menu Screen-state", 10, 10, 30, LIGHTGRAY);
+           // }
+            //else{
+            //    DrawText("Das ist ein anderer State",10,10,30,LIGHTGRAY);
+           // }
 
-        if (globalgamestate == 0) {
-        DrawText("das ist der menu screen state", 10, 10, 30, LIGHTGRAY);
-    }else{
-        DrawText("das ist was anderes", 10, 10, 30, LIGHTGRAY);
-        }
-        DrawTexture(myTexture, 10, 100, WHITE);
+
+            DrawText("Hello, world!", 10, 10, 30, LIGHTGRAY);
+            DrawTexture(myTexture, 10, 100, WHITE);
 
         EndDrawing();
     } // Main game loop end
