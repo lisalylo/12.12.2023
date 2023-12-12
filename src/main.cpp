@@ -10,6 +10,7 @@
 
 #include "screen_gameover.h"
 
+
 int globalgamestate = 0;
 
 int main() {
