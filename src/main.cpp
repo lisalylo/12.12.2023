@@ -28,7 +28,7 @@ int main() {
     // Your own initialization code here
     // ...
     // ...
-    Texture2D myTexture = LoadTexture("assets/graphics/testimage.png");
+    //Texture2D myTexture = LoadTexture("assets/graphics/testimage.png");
 
 
     // Main game loop
@@ -76,8 +76,8 @@ int main() {
            // }
 
 
-            DrawText("Hello, world!", 10, 10, 30, LIGHTGRAY);
-            DrawTexture(myTexture, 10, 100, WHITE);
+            //DrawText("Hello, world!", 10, 10, 30, LIGHTGRAY);
+            //DrawTexture(myTexture, 10, 100, WHITE);
 
         EndDrawing();
     } // Main game loop end
@@ -85,7 +85,7 @@ int main() {
     // De-initialization here
     // ...
     // ...
-    UnloadTexture(myTexture);
+    //UnloadTexture(myTexture);
 
     // Close window and OpenGL context
     CloseWindow();
