@@ -4,8 +4,12 @@
 
 #include "config.h"
 
-Texture2D cookie = LoadTexture ("assets/graphics/cookie.png");
+#include "main.h"
+
+
+#define cookie Texture2D()
 
 void screen_game(){
-    DrawTexture(cookie, 10, 100, WHITE);
+
+    DrawTexture(cookie, 10, 100, BLACK);
 }

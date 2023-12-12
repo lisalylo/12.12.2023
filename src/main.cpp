@@ -2,6 +2,8 @@
 
 #include "raylib.h"
 
+#include <iostream>
+
 #include "config.h"
 
 #include "screen_menu.h"
@@ -15,45 +17,44 @@ enum states {menu, game, gameover};
 
 enum states globalgamestate = menu;
 
+
 int main() {
-    // Raylib initialization
-    // Project name, screen size, fullscreen mode etc. can be specified in the config.h.in file
+    int time = 0;
     InitWindow(Game::ScreenWidth, Game::ScreenHeight, Game::PROJECT_NAME);
     SetTargetFPS(60);
 
 #ifdef GAME_START_FULLSCREEN
     ToggleFullscreen();
 #endif
-
-    // Your own initialization code here
-    // ...
-    // ...
-    //Texture2D myTexture = LoadTexture("assets/graphics/testimage.png");
-
+    Texture2D cookie = LoadTexture("assets/graphics/cookie-png-transparent-images-background-23.png");
 
     // Main game loop
     while (!WindowShouldClose()) // Detect window close button or ESC key
     {
-        int time = 0;
-        time++;
-        if(time == 3600){
-            globalgamestate = gameover;
+        BeginDrawing();
+        // You can draw on the screen between BeginDrawing() and EndDrawing()
+
+
+        ClearBackground(WHITE);
+        if (globalgamestate == game) {
+
+
+            if (time < 600) {
+                time++;
+            }
+            if (time == 600) {
+                globalgamestate = gameover;
+            }
         }
+
+
         if (IsKeyReleased(KEY_ENTER)){
             globalgamestate = game;
         }
         if (IsKeyReleased(KEY_TWO)){
             globalgamestate = menu;
         }
-        if (IsKeyReleased(KEY_THREE)){
-            globalgamestate = gameover;
-        }
 
-        BeginDrawing();
-            // You can draw on the screen between BeginDrawing() and EndDrawing()
-            // ...
-            // ...
-            ClearBackground(WHITE);
 
 
         switch (globalgamestate) {
@@ -62,32 +63,18 @@ int main() {
                break;
 
             case game:
-                screen_game();
+                DrawTexture(cookie, 10, 100, WHITE);
                 break;
             case gameover:
                screen_gameover();
                break;
         }
-            //if(globalgamestate == 0){
-               // DrawText("Das ist der Menu Screen-state", 10, 10, 30, LIGHTGRAY);
-           // }
-            //else{
-            //    DrawText("Das ist ein anderer State",10,10,30,LIGHTGRAY);
-           // }
-
-
-            //DrawText("Hello, world!", 10, 10, 30, LIGHTGRAY);
-            //DrawTexture(myTexture, 10, 100, WHITE);
 
         EndDrawing();
     } // Main game loop end
 
-    // De-initialization here
-    // ...
-    // ...
-    //UnloadTexture(myTexture);
+    UnloadTexture(cookie);
 
-    // Close window and OpenGL context
     CloseWindow();
 
     return EXIT_SUCCESS;
