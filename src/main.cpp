@@ -39,10 +39,10 @@ int main() {
         if (globalgamestate == game) {
 
 
-            if (time < 600) {
+            if (time < 3600) {
                 time++;
             }
-            if (time == 600) {
+            if (time == 3600) {
                 globalgamestate = gameover;
             }
         }
